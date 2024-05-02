@@ -5,3 +5,6 @@
 - ASP.NET
 - Entity Framework Core
 - MS SQL Server
+
+## ER Diagram
+![ER Diagram](./docs/CinemaER.png)
