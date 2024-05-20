@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL;
 using Domain.Entities;
+using System.Collections;
 
 namespace API.Controllers
 {
@@ -25,16 +26,16 @@ namespace API.Controllers
 
         // GET: api/Locations/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Location>> GetLocation(int id)
+        public async Task<ActionResult<IEnumerable<Location>>> GetLocations(int cityId)
         {
-            var location = await _context.Locations.FindAsync(id);
+            var locations = await _context.Locations.Where(x => x.CityId == cityId).ToListAsync();
 
-            if (location == null)
+            if (locations.Count == 0)
             {
                 return NotFound();
             }
 
-            return location;
+            return locations;
         }
 
         // PUT: api/Locations/5
